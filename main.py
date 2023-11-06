@@ -39,7 +39,7 @@ for myid in unemp_df.index:
     results = fred.get_series(myid)
     results = results.to_frame(name=myid)
     all_results.append(results)
-    time.sleep(0.1) # Don't request to fast and get blocked
+    time.sleep(0.1)
 uemp_results = pd.concat(all_results, axis=1)
 
 
@@ -50,8 +50,8 @@ for i in uemp_results:
 uemp_results = uemp_results.drop(columns = cols_to_drop, axis=1)
 
 
-# Drop missing values and update the data frame (not working for some reason)
-uemp_states = uemp_results.copy()  #.drop('UNRATE', axis=1)
+# Drop missing values and update the data frame
+uemp_states = uemp_results.copy()
 uemp_states = uemp_states.dropna()
 id_to_state = unemp_df['title'].str.replace('Unemployment Rate in ','').to_dict()
 uemp_states.columns = [id_to_state[c] for c in uemp_states.columns]
