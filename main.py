@@ -2,13 +2,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import plotly.express as px
 from fredapi import Fred
+from dotenv import load_dotenv
+import os
 import time
+
+load_dotenv()
 
 plt.style.use('fivethirtyeight')
 pd.set_option("display.max_columns", 500)
 color_pal = plt.rcParams["axes.prop_cycle"].by_key()["color"]
 
-fred_key = '2d1922ce6439f2b866240d958b46adfe'
+fred_key = os.getenv("API_KEY")
 
 # Creating fred object
 
